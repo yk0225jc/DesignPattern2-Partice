@@ -2,11 +2,15 @@
 
 namespace FinalExam
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            SpaceStation aSpaceStation = new SpaceStation();
+
+            Console.WriteLine(aSpaceStation.ToString());
+
+            Console.Read();
         }
     }
 }
