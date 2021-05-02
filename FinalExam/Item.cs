@@ -12,7 +12,7 @@ namespace FinalExam
         public string category;
         public string supplier;
         public double unitPrice;
-        public int quantityInStock;
+        public int quantity;
 
         public Item(string aName, string aCategory, string aSupplier, double aUnitprint, int aQuantityInStock)
         {
@@ -20,7 +20,7 @@ namespace FinalExam
             this.category =aCategory;
             this.supplier = aSupplier;
             this.unitPrice = aUnitprint;
-            this.quantityInStock = aQuantityInStock;
+            this.quantity = aQuantityInStock;
 
 
         }
@@ -28,7 +28,7 @@ namespace FinalExam
         public string Category { get { return this.category; } set { this.category = value; } }
         public string Supplier { get { return this.supplier; } set { this.supplier = value; } }
         public double UnitPrice { get { return this.unitPrice; } set { this.unitPrice = value; } }
-        public int QuantityInStock { get { return this.quantityInStock; } set { this.quantityInStock = value; } }
+        public int QuantityInStock { get { return this.quantity; } set { this.quantity = value; } }
 
         public override string ToString()
         {
@@ -36,7 +36,7 @@ namespace FinalExam
                     +"Category: "+ category + "\n" 
                     +"Supplier: "+ supplier + "\n" 
                     + "Unit Price:" +unitPrice + "\n" 
-                    +"Quantity : "+ quantityInStock;
+                    +"Quantity : "+ quantity;
         }
 
     }
