@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Written by Jiameng Zhou
+// 05/02/2021
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,6 @@ namespace FinalExam
 {
     public interface IObserver
     {
-        void React(string aName, string aLocation, double aCredit, Item aItemForSale, Item aItemWanted);
+        void React(Item aItemForSale, Item aItemWanted);
     }
 }

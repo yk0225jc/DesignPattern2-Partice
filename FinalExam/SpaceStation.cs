@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Written by Jiameng Zhou
+// 05/02/2021
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +12,11 @@ namespace FinalExam
     {
         public string name;
         public string location;
-        public double credits;
+        public int credits;
         public Item itemForSale;
         public Item itemWanted;
 
-        public SpaceStation(string aName, string aLocation, double aCredits, Item itemForSale, Item itemWanted)
+        public SpaceStation(string aName, string aLocation, int aCredits, Item itemForSale, Item itemWanted)
         {
             this.name = aName;
             this.location = aLocation;
@@ -36,22 +38,22 @@ namespace FinalExam
         public string Location
         {
             get { return this.location; }
-            set { this.location = value; this.Notify(); }
+            set { this.location = value; this.Notify();}
         }
-        public double Credits
+        public int Credits
         {
             get { return this.credits; }
-            set { this.credits=value; this.Notify(); }
+            set { this.credits=value; this.Notify();}
         }
         public Item ItemForSale
         {
             get { return this.itemForSale; }
-            set { this.itemForSale = value; this.Notify(); }
+            set { this.itemForSale = value; this.Notify();}
         }
         public Item ItemWanted
         {
             get { return this.itemWanted; }
-            set { this.itemWanted = value; this.Notify(); }
+            set { this.itemWanted = value;this.Notify();}
         }
         
 
@@ -59,7 +61,9 @@ namespace FinalExam
         public void Attach(IObserver anObserver)
         {
             aListOfSpaceShips.Add(anObserver);
-            anObserver.React(this.name, this.location, this.credits, this.itemForSale, this.itemWanted);
+            //anObserver.React(this.itemForSale, this.itemWanted);
+            Console.WriteLine("Welcome to " + name + " !!!");
+
         }
 
         public void Detach(IObserver anObserver)
@@ -71,7 +75,7 @@ namespace FinalExam
         {
             foreach(var ship in aListOfSpaceShips)
             {
-                ship.React(this.name, this.location, this.credits, this.itemForSale, this.itemWanted);
+                ship.React(this.itemForSale, this.itemWanted);
             }
         }
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Written by Jiameng Zhou
+// 05/02/2021
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,77 +8,110 @@ using System.Threading.Tasks;
 
 namespace FinalExam
 {
-    public class SpaceShip
+    public class SpaceShip :IObserver
     {
-        public string name;
-        public string location;
-        public double credits;
-        public Item itemForSale;
-        public Item itemWanted;
+        public string shipName;
+        public string shipLocation;
+        public int shipCredits;
+        public Item shipItemForSale;
+        public Item shipItemWanted;
 
-        public SpaceShip(string aName, string aLocation, double aCredit, Item aItemForSale, Item aItemWanted)
+        public SpaceShip(string aName, string aLocation, int aCredit, Item aItemForSale, Item aItemWanted)
         {
-            this.name = aName;
-            this.location = aLocation;
-            this.credits = aCredit;
-            this.itemForSale = aItemForSale;
-            this.itemWanted = aItemWanted;
+            this.shipName = aName;
+            this.shipLocation = aLocation;
+            this.shipCredits = aCredit;
+            this.shipItemForSale = aItemForSale;
+            this.shipItemWanted = aItemWanted;
+        }
+
+        public string ShipName
+        {
+            get { return this.shipName; }
+            set { this.shipName = value ; }
+
+        }
+        public string ShipLocation
+        {
+            get { return this.shipLocation; }
+            set { this.shipLocation = value; }
+        }
+        public int ShipCredits
+        {
+            get { return this.shipCredits; }
+            set { this.shipCredits = value;  }
+        }
+        public Item ShipItemForSale
+        {
+            get { return this.shipItemForSale; }
+            set { this.shipItemForSale = value;  }
+        }
+        public Item ShipItemWanted
+        {
+            get { return this.shipItemWanted; }
+            set { this.shipItemWanted = value;  }
         }
 
 
 
+
+  
+        public void SellItem(Item sellItem, int quantitySell)
+        {
+            if(quantitySell > shipItemForSale.quantity) // if you want to sell more than what you have in stock.
+            {
+                Console.WriteLine("Not enought in stock to Sell! only have  " + sellItem.quantity);
+            }
+            else
+            {
+                shipCredits += quantitySell * sellItem.unitPrice; // add apple sale credits to SpaceShip credits
+                shipItemForSale.quantity -= quantitySell; // the SpaceShip apple quantity decrease;
+                sellItem.quantity += quantitySell; // the space station apple quantity increase
+
+
+            }
+        }
         public void BuyItem(Item buyItem, int quantityBuy)
         {
             if (quantityBuy > buyItem.quantity)
             {
                 Console.WriteLine("Not enought in stock!, only have " + buyItem.quantity);
             }
-            else if (buyItem.unitPrice * quantityBuy > credits)
+            else if (buyItem.unitPrice * quantityBuy > shipCredits)
             {
-                Console.WriteLine("Not Enought credits to purchase, only have " + credits);
+                Console.WriteLine("Not Enought credits to purchase, only have " + shipCredits);
             }
             else
             {
-                credits -= (buyItem.unitPrice * quantityBuy); //minus the SpaceShip credits due to buy new apples
-                itemForSale.quantity += quantityBuy; // the SpaceShip apple quantity increase
+                shipCredits -= (buyItem.unitPrice * quantityBuy); //minus the SpaceShip credits due to buy new apples
+                shipItemForSale.quantity += quantityBuy; // the SpaceShip apple quantity increase
                 buyItem.quantity -= quantityBuy; // the space station apple quantity decrease
             }
         }
-        public void SellItem(Item sellItem, int quantitySell)
+
+        public void FlyToSpaceStation(SpaceStation spaceStation)
         {
-            if(quantitySell > sellItem.quantity)
-            {
-                Console.WriteLine("Not enought in stock to Sell! only have  " + sellItem.quantity);
-            }
-            else
-            {
-                credits += quantitySell * sellItem.unitPrice; // add apple sale credits to SpaceShip credits
-                itemForSale.quantity -= quantitySell; // the SpaceShip apple quantity decrease;
-                sellItem.quantity += quantitySell; // the space station apple quantity increase
-
-
-            }
-        }
-
-        public void FlyToSpaceStation(SpaceStation spaceStation, IObserver observer)
-        {
-            spaceStation.aListOfSpaceShips.Add(observer);
-            observer.React(this.name, this.location, this.credits, this.itemForSale, this.itemWanted);
-            BuyItem(spaceStation.itemForSale, spaceStation.itemForSale.quantity); // auto buy what spaceship wants
+           // Console.WriteLine(spaceStation.itemForSale + "\n " + spaceStation.itemForSale.quantity + "\n" + (spaceStation.itemForSale.unitPrice * spaceStation.itemForSale.quantity));
+            BuyItem(spaceStation.itemForSale, shipItemWanted.quantity); // auto buy what spaceship wants
 
         }
 
         public override string ToString()
         {
             return
-                "Space Ship Name: " + name + "\n" +
-                "Location: " + location + "\n" +
-                "Credits: " + credits + "\n" + "\n" +
+                "Space Ship Name: " + shipName + "\n" +
+                "Location: " + shipLocation + "\n" +
+                "Credits: " + shipCredits + "\n" + "\n" +
                 "Items for Sale: "
-                + "\n" + itemForSale.ToString() +
-                 "\n" + "\n" + "Items Wanted: " + "\n" + itemWanted.ToString();
+                + "\n" + shipItemForSale.ToString() +
+                 "\n" + "\n" + "Items Wanted: " + "\n" + shipItemWanted.ToString();
         }
 
+        public void React(Item aItemForSale, Item aItemWanted)
+        {
 
+            this.shipItemForSale = aItemForSale;
+            this.shipItemWanted = aItemWanted;
+        }
     }
 }
