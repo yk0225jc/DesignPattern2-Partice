@@ -9,12 +9,14 @@ namespace FinalExam
     public class ConcreteShipUpdate : ShipUpdate
     {
 
-        public void SystemUpdate(SpaceShipAssociate shipComponent, SpaceStationComponents stationcomponent)
+        public double SystemUpdate(SpaceShipAssociate shipComponent, SpaceStationComponents stationcomponent)
         {
             double temHolder = shipComponent.powerRating;
             shipComponent.powerRating = stationcomponent.powerRating;
-            Console.WriteLine("Component updated! Rating from " + temHolder + " to " + shipComponent.powerRating);
-        }ddd
+            Console.WriteLine("Component updated! Power Rating went from " + temHolder + " to " + shipComponent.powerRating);
+            return shipComponent.powerRating;
+        }
+
 
 
 

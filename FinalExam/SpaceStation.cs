@@ -16,8 +16,10 @@ namespace FinalExam
         public Item itemForSale;
         public Item itemWanted;
 
-        public List<SpaceStationComponents> components = new List<SpaceStationComponents>();
 
+        public List<SpaceStationComponents> engine = new List<SpaceStationComponents>();
+        public List<SpaceStationComponents> weapon = new List<SpaceStationComponents>();
+        public List<SpaceStationComponents> shield = new List<SpaceStationComponents>();
 
         public SpaceStation(string aName, string aLocation, int aCredits, Item itemForSale, Item itemWanted)
         {

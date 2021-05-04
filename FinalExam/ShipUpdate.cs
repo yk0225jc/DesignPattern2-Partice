@@ -8,6 +8,6 @@ namespace FinalExam
 {
     public interface ShipUpdate
     {
-        void SystemUpdate(SpaceShipAssociate shipComponent ,SpaceStationComponents stationcomponent);
+        double SystemUpdate(SpaceShipAssociate shipComponent ,SpaceStationComponents stationcomponent);
     }
 }

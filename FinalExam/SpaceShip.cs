@@ -19,7 +19,7 @@ namespace FinalExam
         public SpaceShipAssociate engine;
         public SpaceShipAssociate weapon;
         public SpaceShipAssociate shield;
-
+        
         public SpaceShip(string aName, string aLocation, int aCredit, Item aItemForSale, Item aItemWanted, SpaceShipAssociate aEngine, SpaceShipAssociate aWeapon, SpaceShipAssociate aShield)
         {
             this.shipName = aName;
