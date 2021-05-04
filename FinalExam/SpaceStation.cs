@@ -16,6 +16,9 @@ namespace FinalExam
         public Item itemForSale;
         public Item itemWanted;
 
+        public List<SpaceStationComponents> components = new List<SpaceStationComponents>();
+
+
         public SpaceStation(string aName, string aLocation, int aCredits, Item itemForSale, Item itemWanted)
         {
             this.name = aName;

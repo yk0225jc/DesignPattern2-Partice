@@ -16,13 +16,20 @@ namespace FinalExam
         public Item shipItemForSale;
         public Item shipItemWanted;
 
-        public SpaceShip(string aName, string aLocation, int aCredit, Item aItemForSale, Item aItemWanted)
+        public SpaceShipAssociate engine;
+        public SpaceShipAssociate weapon;
+        public SpaceShipAssociate shield;
+
+        public SpaceShip(string aName, string aLocation, int aCredit, Item aItemForSale, Item aItemWanted, SpaceShipAssociate aEngine, SpaceShipAssociate aWeapon, SpaceShipAssociate aShield)
         {
             this.shipName = aName;
             this.shipLocation = aLocation;
             this.shipCredits = aCredit;
             this.shipItemForSale = aItemForSale;
             this.shipItemWanted = aItemWanted;
+            this.engine = aEngine;
+            this.weapon = aWeapon;
+            this.shield = aShield;
         }
 
         public string ShipName
@@ -52,10 +59,26 @@ namespace FinalExam
             set { this.shipItemWanted = value;  }
         }
 
+        public SpaceShipAssociate Engine
+        {
+            get { return this.engine; }
+            set { this.engine = value; }
+        }
+        public SpaceShipAssociate Weapon
+        {
+            get { return this.weapon; }
+            set { this.weapon = value; }
+        }
+        public SpaceShipAssociate Shield
+        {
+            get { return this.shield; }
+            set { this.shield = value; }
+        }
 
 
 
-  
+
+
         public void SellItem(Item sellItem, int quantitySell)
         {
             if(quantitySell > shipItemForSale.quantity) // if you want to sell more than what you have in stock.
