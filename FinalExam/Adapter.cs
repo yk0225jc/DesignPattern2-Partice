@@ -8,7 +8,7 @@ namespace FinalExam
 {
     public class Adapter :IObserver
     {
-        private SpaceShipOld aSpaceShip;
+        public SpaceShipOld aSpaceShip;
 
         public Adapter(SpaceShipOld aSpaceship)
         {
@@ -47,6 +47,7 @@ namespace FinalExam
                         }
                         else
                         {
+                            aSpaceShip.shipLocation = spaceStation.location;
                             BuyItem(spaceStation.itemsForSale[x], aSpaceShip.shipItemsWanted[i].quantity); // auto buy what space ship wants from Space Station
                             Console.WriteLine("Purchased, " + spaceStation.itemsForSale[x].name + ", Total Price: "
                                 + spaceStation.itemsForSale[x].unitPrice * aSpaceShip.shipItemsWanted[i].quantity + ", Quantity: " + aSpaceShip.shipItemsWanted[i].quantity
@@ -59,6 +60,17 @@ namespace FinalExam
 
             }
 
+
+        }
+
+        public override string ToString()
+        {
+
+            return
+                "Space Ship Name: " + aSpaceShip.shipName + "\n" +
+                "Location: " + aSpaceShip.shipLocation + "\n" +
+                "Credits: " + aSpaceShip.shipCredits + "\n" + "Engine " + aSpaceShip.engine + "\n" +
+                "Weapon " + aSpaceShip.weapon + "\n" + "Shield " + aSpaceShip.shield + "\n";
 
         }
 

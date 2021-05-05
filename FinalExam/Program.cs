@@ -8,7 +8,7 @@ namespace FinalExam
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("---------------------------------Status before ship get there-----------------------------------------------------------");
+            Console.WriteLine("---------------------------------Status BEFORE ship get there-----------------------------------------------------------");
             //1st Space Station
             Console.WriteLine("\n");
             //Create 1st Space Station
@@ -197,7 +197,7 @@ namespace FinalExam
             Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------");
 
             
-            Console.WriteLine("---------------------------------Status before upgrade any ship components-----------------------------------------------");
+            Console.WriteLine("---------------------------------Status BEFORE upgrade any ship components-----------------------------------------------");
             Console.WriteLine(SpaceShip1.ToString());
 
             Console.WriteLine("\n");
@@ -247,25 +247,60 @@ namespace FinalExam
 
 
 
-            Console.WriteLine("---------------------------------Status After upgrade any ship components-----------------------------------------------");
+            Console.WriteLine("---------------------------------Status AFTER upgrade any ship components-----------------------------------------------");
             Console.WriteLine("\n" + "\n");
             Console.WriteLine(SpaceShip1.ToString());//status after the upgrade
             Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------");
 
 
             Console.WriteLine("---------------------------------Status for Space Ship old, BEFORE docking-----------------------------------------------");
-            Console.WriteLine("\n" + "\n");
+            Console.WriteLine("\n");
             SpaceShipAssociate weapon2 = new SpaceShipAssociate(2000);
             SpaceShipAssociate engine2 = new SpaceShipAssociate(2000);
             SpaceShipAssociate shield2 = new SpaceShipAssociate(2000);
-            SpaceShipOld spaceShip3 = new SpaceShipOld("SpaceShip3", "N00S00", 5000, engine2, weapon2, shield2);
-            Console.WriteLine(spaceShip3.ToString());
+            SpaceShipOld spaceShip3 = new SpaceShipOld("SpaceShipOld", "N00S00", 5000, engine2, weapon2, shield2);
+            //Item for sale
+            Item goldsSale4 = new Item("Gold", "Metal", "SS1", 10, 200);
+            Item platinumsSale4 = new Item("Platinum", "Metal", "SS1", 20, 200);
+            Item diamondsSale4 = new Item("Diamond", "Metal", "SS1", 30, 200);
+            //Item Wanted
+            Item goldsWanted4 = new Item("Gold", "Metal", "SS1", 10, 10);
+            Item platinumsWanted4 = new Item("Platinum", "Metal", "SS1", 20, 10);
+            Item diamondsWanted4 = new Item("Diamond", "Metal", "SS1", 30, 10);
+            //Add the Item for Sale List
+            spaceShip3.shipItemsForSale.Add(goldsSale4);
+            spaceShip3.shipItemsForSale.Add(platinumsSale4);
+            spaceShip3.shipItemsForSale.Add(diamondsSale4);
+            //Add the item for Wanted List
+            spaceShip3.shipItemsWanted.Add(goldsWanted4);
+            spaceShip3.shipItemsWanted.Add(platinumsWanted4);
+            spaceShip3.shipItemsWanted.Add(diamondsWanted4);
+            //Space Station 1 Status
             
+            
+
+
+            Console.WriteLine(spaceShip3.ToString());
+            Console.WriteLine("\n");
+            Console.WriteLine(SpaceStation1.ToString());
+            Console.WriteLine("Items for Sale: ");
+            SpaceStation1.ShowItems(SpaceStation1.itemsForSale);
+            Console.WriteLine("\n" + "Items Wanted: ");
+            SpaceStation1.ShowItems(SpaceStation1.itemsWanted);
+
             Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------");
+            
+            
             Console.WriteLine("---------------------------------Status for Space Ship old, AFTER docking-----------------------------------------------");
 
             Adapter newAdapter = new Adapter(spaceShip3);
+            SpaceStation1.Attach(newAdapter); // SpaceShip arrive to SpaceStation2
             newAdapter.FlyToSpaceStation(SpaceStation1);
+            Console.WriteLine(newAdapter.ToString());
+
+            Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------");
+
+
 
 
 
