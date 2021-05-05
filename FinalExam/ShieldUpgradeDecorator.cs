@@ -15,8 +15,9 @@ namespace FinalExam
         public override double SystemUpdate(SpaceShipAssociate shipComponent, SpaceStationComponents stationcomponent)
         {
             double temHolder = shipComponent.powerRating;
-            shipComponent.powerRating = stationcomponent.powerRating;
+            
             Console.WriteLine("Shield upgraded! Power Rating went from " + temHolder + " to " + shipComponent.powerRating);
+            shipComponent.powerRating = 0;
             return shipComponent.powerRating;
         }
     }

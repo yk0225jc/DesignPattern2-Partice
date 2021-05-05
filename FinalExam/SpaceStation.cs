@@ -13,21 +13,20 @@ namespace FinalExam
         public string name;
         public string location;
         public int credits;
-        public Item itemForSale;
-        public Item itemWanted;
+        public List<Item> itemsForSale = new List<Item>();
+        public List<Item> itemsWanted = new List<Item>();
 
 
         public List<SpaceStationComponents> engine = new List<SpaceStationComponents>();
         public List<SpaceStationComponents> weapon = new List<SpaceStationComponents>();
         public List<SpaceStationComponents> shield = new List<SpaceStationComponents>();
 
-        public SpaceStation(string aName, string aLocation, int aCredits, Item itemForSale, Item itemWanted)
+        public SpaceStation(string aName, string aLocation, int aCredits)
         {
             this.name = aName;
             this.location = aLocation;
             this.credits = aCredits;
-            this.itemForSale = itemForSale;
-            this.itemWanted = itemWanted;
+
         }
 
         public List<IObserver> aListOfSpaceShips = new List<IObserver>();
@@ -50,15 +49,15 @@ namespace FinalExam
             get { return this.credits; }
             set { this.credits=value; this.Notify();}
         }
-        public Item ItemForSale
+        public List<Item> ItemForSale
         {
-            get { return this.itemForSale; }
-            set { this.itemForSale = value; this.Notify();}
+            get { return this.itemsForSale; }
+            set { this.itemsForSale = value; this.Notify();}
         }
-        public Item ItemWanted
+        public List<Item> ItemWanted
         {
-            get { return this.itemWanted; }
-            set { this.itemWanted = value;this.Notify();}
+            get { return this.itemsWanted; }
+            set { this.itemsWanted = value;this.Notify();}
         }
         
 
@@ -80,22 +79,29 @@ namespace FinalExam
         {
             foreach(var ship in aListOfSpaceShips)
             {
-                ship.React(this.itemForSale, this.itemWanted);
+                ship.React(this.itemsForSale, this.itemsWanted);
             }
         }
-
+        public void ShowItems(List<Item> items)
+        {
+            for(int i = 0; i < items.Count; i++)
+            {
+                Console.WriteLine ((items[i].ToString()));
+            }
+            
+        }
 
         public override string ToString()
         {
-            return 
-                "Space Station Name: "+ name + "\n"+ 
-                "Location: " + location+ "\n"+ 
-                "Credits: " + credits+ "\n"+ "\n"+
-                "Items for Sale: "
-                + "\n" + ItemForSale.ToString() +
-                 "\n" + "\n" + "Items Wanted: " + "\n" + ItemWanted.ToString();
+            return
+                "Space Station Name: " + name + "\n" +
+                "Location: " + location + "\n" +
+                "Credits: " + credits + "\n" + "\n" ;
+
 
         }
 
     }
 }
+
+

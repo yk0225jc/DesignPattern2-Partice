@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\yk0225jc\\.nuget\\packages\\": {}
+    "C:\\Users\\jayzh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yk0225jc\\source\\repos\\FinalExam\\FinalExam\\FinalExam.csproj",
+      "projectUniqueName": "C:\\Users\\jayzh\\Documents\\CIS414FinalExam\\DesignPattern2-Partice\\FinalExam\\FinalExam.csproj",
       "projectName": "FinalExam",
-      "projectPath": "C:\\Users\\yk0225jc\\source\\repos\\FinalExam\\FinalExam\\FinalExam.csproj",
-      "packagesPath": "C:\\Users\\yk0225jc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yk0225jc\\source\\repos\\FinalExam\\FinalExam\\obj\\",
+      "projectPath": "C:\\Users\\jayzh\\Documents\\CIS414FinalExam\\DesignPattern2-Partice\\FinalExam\\FinalExam.csproj",
+      "packagesPath": "C:\\Users\\jayzh\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jayzh\\Documents\\CIS414FinalExam\\DesignPattern2-Partice\\FinalExam\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\yk0225jc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jayzh\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

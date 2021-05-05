@@ -22,5 +22,10 @@ namespace FinalExam
             get { return this.powerRating; }
             set { this.powerRating = value; }
         }
+
+        public override string ToString()
+        {
+            return "Power Rating: " + powerRating;
+        }
     }
 }

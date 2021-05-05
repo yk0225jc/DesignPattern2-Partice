@@ -10,6 +10,10 @@ namespace FinalExam
 {
     public interface IObserver
     {
-        void React(Item aItemForSale, Item aItemWanted);
+        void React(List<Item> aItemForSale, List<Item> aItemWanted);
+
+        void BuyItem(Item buyItem, int quantityBuy);
+
+
     }
 }

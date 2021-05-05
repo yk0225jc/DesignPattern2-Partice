@@ -13,23 +13,25 @@ namespace FinalExam
         public string shipName;
         public string shipLocation;
         public int shipCredits;
-        public Item shipItemForSale;
-        public Item shipItemWanted;
+
+        public List<Item> shipItemsForSale = new List<Item>();
+        public List<Item> shipItemsWanted = new List<Item>();
+
+
 
         public SpaceShipAssociate engine;
         public SpaceShipAssociate weapon;
         public SpaceShipAssociate shield;
         
-        public SpaceShip(string aName, string aLocation, int aCredit, Item aItemForSale, Item aItemWanted, SpaceShipAssociate aEngine, SpaceShipAssociate aWeapon, SpaceShipAssociate aShield)
+        public SpaceShip(string aName, string aLocation, int aCredit, SpaceShipAssociate aEngine, SpaceShipAssociate aWeapon, SpaceShipAssociate aShield)
         {
             this.shipName = aName;
             this.shipLocation = aLocation;
             this.shipCredits = aCredit;
-            this.shipItemForSale = aItemForSale;
-            this.shipItemWanted = aItemWanted;
             this.engine = aEngine;
             this.weapon = aWeapon;
             this.shield = aShield;
+            
         }
 
         public string ShipName
@@ -48,15 +50,15 @@ namespace FinalExam
             get { return this.shipCredits; }
             set { this.shipCredits = value;  }
         }
-        public Item ShipItemForSale
+        public List<Item> ShipItemsForSale
         {
-            get { return this.shipItemForSale; }
-            set { this.shipItemForSale = value;  }
+            get { return this.shipItemsForSale; }
+            set { this.shipItemsForSale = value;  }
         }
-        public Item ShipItemWanted
+        public List<Item> ShipItemsWanted
         {
-            get { return this.shipItemWanted; }
-            set { this.shipItemWanted = value;  }
+            get { return this.shipItemsWanted; }
+            set { this.shipItemsWanted = value;  }
         }
 
         public SpaceShipAssociate Engine
@@ -81,14 +83,13 @@ namespace FinalExam
 
         public void SellItem(Item sellItem, int quantitySell)
         {
-            if(quantitySell > shipItemForSale.quantity) // if you want to sell more than what you have in stock.
+            if(quantitySell > sellItem.quantity) // if you want to sell more than what you have in stock.
             {
                 Console.WriteLine("Not enought in stock to Sell! only have  " + sellItem.quantity);
             }
             else
             {
                 shipCredits += quantitySell * sellItem.unitPrice; // add apple sale credits to SpaceShip credits
-                shipItemForSale.quantity -= quantitySell; // the SpaceShip apple quantity decrease;
                 sellItem.quantity += quantitySell; // the space station apple quantity increase
 
 
@@ -106,35 +107,74 @@ namespace FinalExam
             }
             else
             {
+                
                 shipCredits -= (buyItem.unitPrice * quantityBuy); //minus the SpaceShip credits due to buy new apples
-                shipItemForSale.quantity += quantityBuy; // the SpaceShip apple quantity increase
                 buyItem.quantity -= quantityBuy; // the space station apple quantity decrease
             }
         }
 
         public void FlyToSpaceStation(SpaceStation spaceStation)
         {
-           // Console.WriteLine(spaceStation.itemForSale + "\n " + spaceStation.itemForSale.quantity + "\n" + (spaceStation.itemForSale.unitPrice * spaceStation.itemForSale.quantity));
-            BuyItem(spaceStation.itemForSale, shipItemWanted.quantity); // auto buy what spaceship wants
+            for(int i = 0; i < shipItemsWanted.Count; i++) 
+            {
+                for(int x = 0; x < spaceStation.itemsForSale.Count; x++)
+                {
+                    if (spaceStation.itemsForSale[x].name == shipItemsWanted[i].name) // spaceship and space station items name should be the same, to ensure the same item
+                    {
+                        if (spaceStation.itemsForSale[x].unitPrice > shipItemsWanted[i].unitPrice) // if space station item price is higher than what space ship expected, then don't buy
+                        {
+                            Console.WriteLine(spaceStation.itemsForSale[x].name + " cost more than the space ship expected price, therefore don't buy");
+
+                        }
+                        else
+                        {
+                            BuyItem(spaceStation.itemsForSale[x], shipItemsWanted[i].quantity); // auto buy what space ship wants from Space Station
+                            Console.WriteLine("Purchased, " + spaceStation.itemsForSale[x].name + ", Total Price: "
+                                + spaceStation.itemsForSale[x].unitPrice * shipItemsWanted[i].quantity + ", Quantity: " + shipItemsWanted[i].quantity
+                                + ", Single unit price:" + spaceStation.itemsForSale[x].unitPrice);
+                        }
+                    }
+                }
+
+
+                
+            }
+            
 
         }
+
+        public void BuyComponent(SpaceStationComponents aComponent)
+        {
+            shipCredits -= aComponent.unitPrice; // reduce the credit of the ship, for Components
+        }
+
+        public void ShowItems(List<Item> items)
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                Console.WriteLine((items[i].ToString()));
+            }
+
+        }
+
+
 
         public override string ToString()
         {
+            
             return
                 "Space Ship Name: " + shipName + "\n" +
                 "Location: " + shipLocation + "\n" +
-                "Credits: " + shipCredits + "\n" + "\n" +
-                "Items for Sale: "
-                + "\n" + shipItemForSale.ToString() +
-                 "\n" + "\n" + "Items Wanted: " + "\n" + shipItemWanted.ToString();
+                "Credits: " + shipCredits + "\n" + "Engine "+engine + "\n"+
+                "Weapon " + weapon + "\n"+ "Shield " + shield + "\n";
+
         }
 
-        public void React(Item aItemForSale, Item aItemWanted)
+        public void React(List<Item> ItemsForSale, List<Item> ItemsWanted)
         {
 
-            this.shipItemForSale = aItemForSale;
-            this.shipItemWanted = aItemWanted;
+            this.shipItemsForSale = ItemsForSale;
+            this.shipItemsWanted = ItemsWanted;
         }
     }
 }
