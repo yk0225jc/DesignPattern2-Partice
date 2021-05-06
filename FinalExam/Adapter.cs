@@ -28,7 +28,7 @@ namespace FinalExam
             else
             {
 
-                aSpaceShip.shipCredits -= (buyItem.unitPrice * quantityBuy); //minus the SpaceShip credits due to buy new apples
+                //aSpaceShip.shipCredits -= (buyItem.unitPrice * quantityBuy); //minus the SpaceShip credits due to buy new apples
                 buyItem.quantity -= quantityBuy; // the space station apple quantity decrease
             }
         }

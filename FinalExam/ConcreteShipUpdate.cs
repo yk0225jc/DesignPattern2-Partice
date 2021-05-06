@@ -13,7 +13,7 @@ namespace FinalExam
         {
             double temHolder = shipComponent.powerRating;
             shipComponent.powerRating = stationcomponent.powerRating;
-            Console.WriteLine("Component updated! Power Rating went from " + temHolder + " to " + shipComponent.powerRating);
+            Console.WriteLine("Power Rating went from " + temHolder + " to " + shipComponent.powerRating);
             return shipComponent.powerRating;
         }
 

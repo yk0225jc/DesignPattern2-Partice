@@ -16,7 +16,6 @@ namespace FinalExam
         {
             double temHolder = shipComponent.powerRating;
             shipComponent.powerRating = stationcomponent.powerRating;
-            double shipNewWeaponRating = shipComponent.powerRating;
             Console.WriteLine("Weapon upgraded! Power Rating went from " + temHolder + " to " + shipComponent.powerRating);
             return shipComponent.powerRating;
         }

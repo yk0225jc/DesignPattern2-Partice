@@ -206,8 +206,9 @@ namespace FinalExam
             Console.WriteLine("---------------------------------Components upgrading-----------------------------------------------------------------------");
             //Create aShipUpdate instance.   
             ShipUpdate aShipUpdate = new ConcreteShipUpdate();
-            Decorator weaponUpgrade = new WeaponUpgradeDecorator(aShipUpdate);
-
+            Decorator upgradeWeapon = new WeaponUpgradeDecorator(aShipUpdate);
+            Decorator upgradeEngine = new EngineUpgradeDecorator(aShipUpdate);
+            Decorator upgradeShield = new ShieldUpgradeDecorator(aShipUpdate);
             //Ask what weapon user want to upgrade to
             Console.WriteLine("Please select a weapon that you want upgrade to: " + "\n" +
                 "Press 1,2,or 3" + "\n" + " [1] Basic verison: Power Rating-" + SpaceStation1.weapon[0].powerRating + "  Cost: " + SpaceStation1.weapon[0].unitPrice + "\n" +
@@ -216,7 +217,7 @@ namespace FinalExam
                 "Your current Credits: " + SpaceShip1.shipCredits);
             var userInputWeapon = Console.ReadLine();
             var UIW = Convert.ToInt32(userInputWeapon);//convert user input to a int type
-            weaponUpgrade.SystemUpdate(SpaceShip1.weapon, SpaceStation1.weapon[UIW - 1]);
+            upgradeWeapon.SystemUpdate(SpaceShip1.weapon, SpaceStation1.weapon[UIW - 1]);
             SpaceShip1.BuyComponent(SpaceStation1.weapon[UIW - 1]);//reduce the ship credit
             Console.WriteLine("\n" + "\n");
 
@@ -228,19 +229,19 @@ namespace FinalExam
                 "Your current Credits: " + SpaceShip1.shipCredits);
             var userInputEngine = Console.ReadLine();
             var UIE = Convert.ToInt32(userInputEngine);//convert user input to a int type
-            weaponUpgrade.SystemUpdate(SpaceShip1.engine, SpaceStation1.engine[UIE - 1]);
+            upgradeEngine.SystemUpdate(SpaceShip1.engine, SpaceStation1.engine[UIE - 1]);
             SpaceShip1.BuyComponent(SpaceStation1.engine[UIW - 1]);//reduce the ship credit
             Console.WriteLine("\n" + "\n");
 
             //Ask what Shields that user want to upgrade to 
-            Console.WriteLine("Please select a engine that you want upgrade to: " + "\n" +
+            Console.WriteLine("Please select a shield that you want upgrade to: " + "\n" +
                 "Press 1,2,or 3" + "\n" + " [1] Basic verison: Power Rating-" + SpaceStation1.shield[0].powerRating + "  Cost: " + SpaceStation1.shield[0].unitPrice + "\n" +
                 " [2] Elite verison: Power Rating-" + +SpaceStation1.shield[1].powerRating + "  Cost: " + SpaceStation1.shield[1].unitPrice + "\n" +
                 " [3] Supreme verison: Power Rating-" + +SpaceStation1.shield[2].powerRating + "  Cost: " + SpaceStation1.shield[2].unitPrice + "\n" +
                 "Your current Credits: " + SpaceShip1.shipCredits);
             var userInputShields = Console.ReadLine();
             var UIS = Convert.ToInt32(userInputShields);//convert user input to a int type
-            weaponUpgrade.SystemUpdate(SpaceShip1.shield, SpaceStation1.shield[UIS - 1]);
+            upgradeShield.SystemUpdate(SpaceShip1.shield, SpaceStation1.shield[UIS - 1]);
             SpaceShip1.BuyComponent(SpaceStation1.shield[UIS - 1]);//reduce the ship credit
             Console.WriteLine("\n" + "\n");
             Console.WriteLine("--------------------------------------------------------------------------------------------------------------------------");
